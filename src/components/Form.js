@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './styleForm.css';
 
 class Form extends Component  {
   handleSubmit = (ev) => {
@@ -12,9 +13,16 @@ class Form extends Component  {
     }
   }
   render() {
-    return (<form onSubmit={this.handleSubmit}>
+    return (<form onSubmit={this.handleSubmit} className="formAdd">
         <input ref="title" placeholder="Title" autofocus="true" />
         <button>Add</button>
+        <select>
+        <option>Hight</option>
+        <option>Medium</option>
+        <option>Low</option>
+        </select>
+        <input className = "date" type="date" />
+        <textarea placeholder ="description"></textarea>
     </form>);
   }
 }
