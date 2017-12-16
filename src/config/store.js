@@ -1,6 +1,8 @@
-import { createStore } from 'redux'
-import reducers from '../reducers'
+import { createStore, applyMiddleware } from "redux";
+import reducers from "../reducers";
+import logger from "./logger";
+import async from "./async";
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(logger, async));
 
 export default store;

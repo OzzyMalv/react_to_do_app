@@ -1,10 +1,5 @@
-h1,
-p {
-    font-family: Lato;
-}
-
-table,
-td,
-tr {
-    border: 1px;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
 }

@@ -1,40 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { render } from 'react-dom';
-import './style.css';
+//import "./style.css";
 
-import { addItem, toggleCheck, addItems } from "../../actions/items"
+import { loadItems } from "../../actions/items";
 
-
-import Form from '../Form';
-import Filter from '../Filter';
-import Table from '../Table';
-import { getItems } from '../../apiWrapper';
+import Form from "../Form";
+import Filter from "../Filter";
+import Table from "../Table";
 
 class App extends Component {
-  state = {
-    items: []
-  };
-  constructor() {
-    super();
-    getItems().then(items => this.props.addItems(items));
+  constructor(...args) {
+    super(...args);
+    this.props.loadItems();
   }
-
-  addTask = ({title}) => this.props.toggleCheck(id);
-
-  toggleChecked = (id) => this.props.toggleCheck(id);
 
   render() {
     return (
       <div>
-        We have {this.state.items.length} item(s)
-        <Form onAdd={this.addTask}/>
+        We have {this.props.items.length} item(s)
+        <Form />
         <Filter />
-        <Table items={this.props.items} toggleChecked={this.toggleChecked}/>
+        <Table items={this.props.items} />
       </div>
     );
   }
 }
+
 // https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options
 
 const mapStateToProps = (state /*, _ownProps*/) => ({
@@ -42,8 +33,6 @@ const mapStateToProps = (state /*, _ownProps*/) => ({
 });
 
 const mapDispatchToProps = {
-  addItem,
-  addItems,
-  toggleCheck
+  loadItems
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

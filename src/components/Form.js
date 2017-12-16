@@ -1,30 +1,26 @@
-import React, {Component} from 'react';
-import './styleForm.css';
+import React, { Component } from "react";
+import { addItem } from "../actions/items";
+import { connect } from "react-redux";
 
-class Form extends Component  {
-  handleSubmit = (ev) => {
+class Form extends Component {
+  handleSubmit = ev => {
     ev.preventDefault();
     let title = this.refs.title.value;
-    if(title) {
-      this.props.onAdd({
+    if (title) {
+      this.props.addItem({
         title
       });
       ev.target.reset();
     }
-  }
+  };
   render() {
-    return (<form onSubmit={this.handleSubmit} className="formAdd">
-        <input ref="title" placeholder="Title" autofocus="true" />
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input ref="title" placeholder="Title" autoFocus="true" />
         <button>Add</button>
-        <select>
-        <option>Hight</option>
-        <option>Medium</option>
-        <option>Low</option>
-        </select>
-        <input className = "date" type="date" />
-        <textarea placeholder ="description"></textarea>
-    </form>);
+      </form>
+    );
   }
 }
 
-export default Form;
+export default connect(undefined, { addItem })(Form);
