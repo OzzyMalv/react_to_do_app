@@ -10,4 +10,4 @@ The application consists of three parts:
 
 ![Todo List](TodoApp.png)
 
-### Implement the application on the reactjs
+### Made this application on the react + redux
